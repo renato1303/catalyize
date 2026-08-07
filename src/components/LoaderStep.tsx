@@ -8,10 +8,10 @@ interface LoaderProps {
 
 export default function LoaderStep({ onComplete }: LoaderProps) {
   const steps = [
-    { text: 'Avaliando cenário da empresa...', icon: Cpu, progressRange: [0, 25], color: 'text-sky-600' },
-    { text: 'Identificando gargalos de crescimento...', icon: BarChart3, progressRange: [25, 55], color: 'text-teal-600' },
-    { text: 'Cruzando informações da operação...', icon: Compass, progressRange: [55, 85], color: 'text-sky-600' },
-    { text: 'Finalizando e redirecionando para a página de obrigado...', icon: ShieldCheck, progressRange: [85, 100], color: 'text-teal-600' },
+    { text: 'Avaliando cenário da empresa...', icon: Cpu, progressRange: [0, 25], color: 'text-sky-400' },
+    { text: 'Identificando gargalos de crescimento...', icon: BarChart3, progressRange: [25, 55], color: 'text-teal-400' },
+    { text: 'Cruzando informações da operação...', icon: Compass, progressRange: [55, 85], color: 'text-sky-400' },
+    { text: 'Finalizando e redirecionando para a página de obrigado...', icon: ShieldCheck, progressRange: [85, 100], color: 'text-teal-400' },
   ];
 
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -55,7 +55,7 @@ export default function LoaderStep({ onComplete }: LoaderProps) {
   const CurrentIcon = steps[currentStepIndex].icon;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[450px] w-full max-w-2xl glass-panel bg-white/95 border border-slate-200/90 rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden text-slate-900 select-none">
+    <div className="flex flex-col items-center justify-center min-h-[450px] w-full max-w-2xl glass-panel bg-zinc-950/90 border border-zinc-800 rounded-[32px] p-8 md:p-12 shadow-2xl relative overflow-hidden text-slate-100 select-none">
       <div className="relative flex items-center justify-center mb-8 w-40 h-40">
         
         {/* Animated Background Radar Wave */}
@@ -68,14 +68,14 @@ export default function LoaderStep({ onComplete }: LoaderProps) {
             cx="80"
             cy="80"
             r="70"
-            className="stroke-slate-200 fill-none"
+            className="stroke-zinc-900 fill-none"
             strokeWidth="4"
           />
           <motion.circle
             cx="80"
             cy="80"
             r="70"
-            className="stroke-teal-600 fill-none"
+            className="stroke-teal-400 fill-none"
             strokeWidth="4"
             strokeDasharray={439.8} // 2 * pi * 70
             strokeDashoffset={439.8 - (439.8 * progress) / 100}
@@ -94,10 +94,10 @@ export default function LoaderStep({ onComplete }: LoaderProps) {
           >
             <CurrentIcon className="w-8 h-8" />
           </motion.div>
-          <span className="font-display font-bold text-3xl tracking-tight text-slate-900 mb-0.5">
+          <span className="font-display font-bold text-3xl tracking-tight text-white mb-0.5">
             {progress}%
           </span>
-          <span className="text-[10px] tracking-widest text-sky-600 font-mono font-medium uppercase">
+          <span className="text-[10px] tracking-widest text-sky-400 font-mono font-medium uppercase">
             CALIBRANDO
           </span>
         </div>
@@ -112,7 +112,7 @@ export default function LoaderStep({ onComplete }: LoaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
-            className="text-base md:text-lg font-display text-slate-800 tracking-wide font-medium"
+            className="text-base md:text-lg font-display text-slate-200 tracking-wide font-medium"
           >
             {steps[currentStepIndex].text}
           </motion.p>
@@ -120,9 +120,9 @@ export default function LoaderStep({ onComplete }: LoaderProps) {
       </div>
 
       {/* Bottom Loading Bar */}
-      <div className="w-64 h-2 bg-slate-100 rounded-full overflow-hidden mt-6 border border-slate-200">
+      <div className="w-64 h-2 bg-zinc-900 rounded-full overflow-hidden mt-6 border border-zinc-800">
         <div 
-          className="h-full bg-gradient-to-r from-sky-600 to-teal-600 rounded-full transition-all duration-300"
+          className="h-full bg-gradient-to-r from-sky-500 to-teal-500 rounded-full transition-all duration-300"
           style={{ width: `${progress}%` }}
         />
       </div>

@@ -13,61 +13,61 @@
   --color-brand-zinc: #64748b;
 }
 
-/* Custom clean white light theme */
+/* Custom black theme */
 body {
-  background-color: #f8fafc;
-  color: #0f172a;
+  background-color: #000000;
+  color: #f8fafc;
   font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
-/* Soft glow classes for light mode */
+/* Soft glow classes for dark mode */
 .glow-green {
-  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.12);
+  box-shadow: 0 4px 25px rgba(13, 148, 136, 0.2);
 }
 
 .glow-cyan {
-  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.12);
+  box-shadow: 0 4px 25px rgba(2, 132, 199, 0.2);
 }
 
 .text-glow-green {
-  text-shadow: 0 0 8px rgba(13, 148, 136, 0.25);
+  text-shadow: 0 0 12px rgba(13, 148, 136, 0.4);
 }
 
 .text-glow-cyan {
-  text-shadow: 0 0 8px rgba(2, 132, 199, 0.25);
+  text-shadow: 0 0 12px rgba(2, 132, 199, 0.4);
 }
 
-/* Glassmorphism light card */
+/* Glassmorphism dark card */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.95), 0 4px 12px -2px rgba(0, 0, 0, 0.8);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-panel-active {
-  background: #ffffff;
-  backdrop-filter: blur(20px);
+  background: rgba(14, 14, 14, 0.98);
+  backdrop-filter: blur(24px);
   border: 1px solid #0284c7;
-  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.25);
 }
 
 /* Option Button Slider Hover */
 .option-btn {
-  background: #ffffff;
+  background: rgba(12, 12, 12, 0.9);
   backdrop-filter: blur(20px);
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
   transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .option-btn:hover {
-  background: #f0f9ff;
+  background: rgba(2, 132, 199, 0.15);
   border-color: #0284c7;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.2);
 }
 
 @media (hover: hover) {
@@ -77,23 +77,23 @@ body {
 }
 
 .option-btn-selected {
-  background: #f0f9ff;
+  background: rgba(2, 132, 199, 0.22);
   backdrop-filter: blur(20px);
-  border-color: #0284c7;
-  color: #0369a1;
+  border-color: #38bdf8;
+  color: #38bdf8;
 }
 
 .neon-glow-green {
-  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2);
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.25);
 }
 
 .neon-glow-cyan {
-  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.25);
 }
 
 .mesh-gradient {
-  background: radial-gradient(circle at 20% 20%, rgba(2, 132, 199, 0.06) 0%, transparent 40%),
-              radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.06) 0%, transparent 40%);
+  background: radial-gradient(circle at 20% 20%, rgba(2, 132, 199, 0.07) 0%, transparent 45%),
+              radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.07) 0%, transparent 45%);
 }
 
 /* Background animated elements */
