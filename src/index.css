@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-brand-cyan: #0284c7;
+  --color-brand-green: #0d9488;
+  --color-brand-dark: #f8fafc;
+  --color-brand-card: #ffffff;
+  --color-brand-zinc: #64748b;
+}
+
+/* Custom clean white light theme */
+body {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Soft glow classes for light mode */
+.glow-green {
+  box-shadow: 0 4px 20px rgba(13, 148, 136, 0.12);
+}
+
+.glow-cyan {
+  box-shadow: 0 4px 20px rgba(2, 132, 199, 0.12);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 8px rgba(13, 148, 136, 0.25);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 8px rgba(2, 132, 199, 0.25);
+}
+
+/* Glassmorphism light card */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 20px 30px -10px rgba(15, 23, 42, 0.05), 0 4px 6px -2px rgba(15, 23, 42, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel-active {
+  background: #ffffff;
+  backdrop-filter: blur(20px);
+  border: 1px solid #0284c7;
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.12);
+}
+
+/* Option Button Slider Hover */
+.option-btn {
+  background: #ffffff;
+  backdrop-filter: blur(20px);
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.option-btn:hover {
+  background: #f0f9ff;
+  border-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.1);
+}
+
+@media (hover: hover) {
+  .option-btn:hover {
+    transform: translateX(6px);
+  }
+}
+
+.option-btn-selected {
+  background: #f0f9ff;
+  backdrop-filter: blur(20px);
+  border-color: #0284c7;
+  color: #0369a1;
+}
+
+.neon-glow-green {
+  box-shadow: 0 4px 15px rgba(13, 148, 136, 0.2);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
+}
+
+.mesh-gradient {
+  background: radial-gradient(circle at 20% 20%, rgba(2, 132, 199, 0.06) 0%, transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(13, 148, 136, 0.06) 0%, transparent 40%);
+}
+
+/* Background animated elements */
+.grid-overlay {
+  background-image: none;
+}
+
+/* Keyframe animations and helpers */
+@keyframes neonPulse {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-slow {
+  animation: neonPulse 8s infinite ease-in-out;
+}
+
+/* Custom inputs styling */
+input::placeholder {
+  color: #94a3b8;
+}
+
+input:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+/* Masked inputs and webkit modifications */
+input[type="tel"] {
+  letter-spacing: 0.05em;
+}
+
+/* Hide scrollbars for slick layouts */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

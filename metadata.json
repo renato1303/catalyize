@@ -1,0 +1,8 @@
+{
+  "name": "Catalyize",
+  "description": "Formulário conversacional premium para captar e qualificar empresas interessadas em serviços de tráfego pago e crescimento previsível.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
