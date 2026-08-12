@@ -51,8 +51,12 @@ export default function AdminPanel({ onClose }: AdminPanelProps) {
     if (storedConfig) {
       try {
         const parsed = JSON.parse(storedConfig);
-        if (!parsed.googleSheetsUrl || parsed.googleSheetsUrl.includes('docs.google.com/spreadsheets') || parsed.googleSheetsUrl.includes('AKfycbziZnt1mEvUO65mBQ7Oe-YAK1_d8KmsvRiPnBIOkrMjSdS1tBfHvfJ3Qq4HMOqF6WOe')) {
-          parsed.googleSheetsUrl = 'https://script.google.com/macros/s/AKfycbwzKoS8TzwLwBDwiWGNc5a5ikI2q1P_twszpNo_6hof20UHoaTEli0llrcHlB19pPIZ/exec';
+        if (!parsed.googleSheetsUrl || 
+            parsed.googleSheetsUrl.includes('docs.google.com/spreadsheets') || 
+            parsed.googleSheetsUrl.includes('AKfycbzi') ||
+            parsed.googleSheetsUrl.includes('AKfycbwz') ||
+            !parsed.googleSheetsUrl.includes('script.google.com')) {
+          parsed.googleSheetsUrl = DEFAULT_INTEGRATIONS_CONFIG.googleSheetsUrl;
           localStorage.setItem('sensesales_integrations_config', JSON.stringify(parsed));
         }
         setIntegrationConfig(parsed);

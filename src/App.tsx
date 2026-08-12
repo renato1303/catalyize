@@ -215,16 +215,21 @@ export default function App() {
     }
 
     // Determine path forward
-    if (currentStep < totalQuestionsCount) {
+    if (currentStep <= totalQuestionsCount) {
       setCurrentStep(prev => prev + 1);
     } else {
-      // Conclude form - switch to loader
-      setIsProcessing(true);
+      handleContactSubmit();
     }
   };
 
   const REDIRECT_THANK_YOU_URL = 'https://obrigadocatalyize.sensesales.com.br';
   const pendingSaveRef = useRef<Promise<void> | null>(null);
+
+  useEffect(() => {
+    if (isProcessing && !pendingSaveRef.current) {
+      pendingSaveRef.current = saveLeadToDatabase();
+    }
+  }, [isProcessing]);
 
   const executeRedirect = () => {
     try {
@@ -306,19 +311,22 @@ export default function App() {
     // Fire off to webhooks
     triggerWebhooks(finalLead);
 
-    // Save to Supabase
+    // Load and sanitize integrations config
     let config: IntegrationConfig = DEFAULT_INTEGRATIONS_CONFIG;
     const storedConfig = localStorage.getItem('sensesales_integrations_config');
     if (storedConfig) {
       try {
         config = JSON.parse(storedConfig);
-        if (!config.googleSheetsUrl || config.googleSheetsUrl.includes('docs.google.com/spreadsheets') || config.googleSheetsUrl.includes('AKfycbziZnt1mEvUO65mBQ7Oe-YAK1_d8KmsvRiPnBIOkrMjSdS1tBfHvfJ3Qq4HMOqF6WOe')) {
-          config.googleSheetsUrl = "script.com"//'https://script.google.com/macros/s/AKfycbwzKoS8TzwLwBDwiWGNc5a5ikI2q1P_twszpNo_6hof20UHoaTEli0llrcHlB19pPIZ/exec';
+        if (!config.googleSheetsUrl || 
+            config.googleSheetsUrl.includes('docs.google.com/spreadsheets') || 
+            config.googleSheetsUrl.includes('AKfycbzi') ||
+            config.googleSheetsUrl.includes('AKfycbwz') ||
+            !config.googleSheetsUrl.includes('script.google.com')) {
+          config.googleSheetsUrl = DEFAULT_INTEGRATIONS_CONFIG.googleSheetsUrl;
           localStorage.setItem('sensesales_integrations_config', JSON.stringify(config));
         }
       } catch (err) {}
     } else {
-      // If no stored config, initialize with default (which contains our script URL)
       localStorage.setItem('sensesales_integrations_config', JSON.stringify(DEFAULT_INTEGRATIONS_CONFIG));
     }
 
@@ -396,17 +404,32 @@ export default function App() {
     }
 
     // Google Sheets Integration
-    if (config.googleSheetsUrl && config.googleSheetsUrl.includes('script.google.com')) {
+    const targetSheetsUrl = config.googleSheetsUrl || DEFAULT_INTEGRATIONS_CONFIG.googleSheetsUrl;
+    if (targetSheetsUrl && targetSheetsUrl.includes('script.google.com')) {
       try {
-        await fetch(config.googleSheetsUrl, {
+        const payloadStr = JSON.stringify(finalLead);
+
+        // Send via sendBeacon (background transfer guaranteed on redirect)
+        if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+          try {
+            const blob = new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' });
+            navigator.sendBeacon(targetSheetsUrl, blob);
+          } catch (e) {
+            console.warn('sendBeacon warning:', e);
+          }
+        }
+
+        // Send via fetch with keepalive
+        await fetch(targetSheetsUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8',
           },
-          body: JSON.stringify(finalLead),
+          body: payloadStr,
           mode: 'no-cors',
           keepalive: true
         });
+
         newLogs.push({
           id: Math.random().toString(),
           time: timestamp,

@@ -66,7 +66,7 @@ export const DEFAULT_INTEGRATIONS_CONFIG: IntegrationConfig = {
   metaPixelId: '1234567890',
   gaTrackingId: 'G-XXXXXXXXXX',
   gtmId: 'GTM-XXXXXXX',
-  googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbwzKoS8TzwLwBDwiWGNc5a5ikI2q1P_twszpNo_6hof20UHoaTEli0llrcHlB19pPIZ/exec',
+  googleSheetsUrl: 'https://script.google.com/macros/s/AKfycbzNfiEzQ1GJm_JiRntOwlwRAmjwKsXCkO1QJVvfw1UI05FBABjR5mFJQNJTQPNEaBC4/exec',
   calendlyUrl: 'https://calendly.com/contatosensesales/30min',
   adminPassword: 'sensesales@admin',
 };
