@@ -222,7 +222,7 @@ export default function App() {
     }
   };
 
-  const REDIRECT_THANK_YOU_URL = 'https://obrigadocatalyize.sensesales.com.br';
+  const REDIRECT_THANK_YOU_URL = 'https://page-obrigado-catalyize.vercel.app';
   const pendingSaveRef = useRef<Promise<void> | null>(null);
 
   useEffect(() => {
